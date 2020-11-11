@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
+Auth::routes(['register' => false]);
+
+Route::get('/companies', function () {
+    return view('companies.index');
+});
+Route::get('/employes', function () {
+    return view('employes.index');
+});
+// Route::get('/', function () {
+//     return redirect('login');
+// });
+
+
+Route::get('/home', 'HomeController@index')->name('home');
