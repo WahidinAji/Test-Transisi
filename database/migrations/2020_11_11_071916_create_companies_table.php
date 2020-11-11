@@ -19,7 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->string('email')->unique();
             $table->string('logo');
             $table->string('website');
-            $table->timestamps()
+            $table->timestamps();
         });
     }
 
