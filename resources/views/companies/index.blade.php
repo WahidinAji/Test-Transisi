@@ -35,20 +35,21 @@
                                         <td>{{ $companies->name }}</td>
                                         <td>{{ $companies->email }}</td>
                                         <td>
-                                            <img style="width: 100px;" src="{{ asset('storage/app/company/'.$companies->logo)  }}" alt="cek">
+                                            <img src="{{ url('storage/'.$companies->logo)  }}" alt="{{ $companies->logo }}">
                                             {{-- <img style="width: 100px;" src="{{ asset("dist/img/Logo SMAN1BS.png")  }}" alt=""> --}}
                                             {{-- <img src="{{storage_path('app/company/'.$companies->logo) }}" alt="An image"> --}}
-                                            <img src="{{asset($companies->logo) }}" alt="An image">
+                                            {{-- <img src="{{asset($companies->logo) }}" alt="{{ $companies->logo }}"> --}}
                                         </td>
                                         <td>{{ $companies->website }}</td>
                                         <td>
-                                            <a href="" class="badge badge-primary">Edit</a>
-                                            <a href="" class="badge badge-primary">Show</a>
-                                            <form action="{{ URL::route('companies.destroy',$companies->id) }}"method="POST" class="badge">
+                                            <a href="{{ URL::route('companies.edit',$companies->id) }}" class="badge badge-primary">Edit</a>
+                                            <a href="{{ URL::route('companies.show',$companies->id) }}" class="badge badge-primary">Show</a>
+                                            <form action="{{ URL::route('companies.destroy',$companies->id) }}"method="POST" class="badge" style="padding: 0%;">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="button button-outline-danger" style="border-color: transparent; padding: 0;">
-                                                    <span class="badge badge-danger">Delete</span>
+                                                <button class="badge badge-danger" style="border-color: transparent;">
+                                                    Delete
+                                                    {{-- <span class="badge badge-danger" style="padding: 0%;">Delete</span> --}}
                                                 </button>
                                             </form>
                                             {{-- <a href="" class="badge badge-primary">Delete</a> --}}

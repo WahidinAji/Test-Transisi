@@ -103,10 +103,10 @@ class CompaniesController extends Controller
      * @param  \App\Model\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
         if (Auth::check()) {
-            $company = Company::find($id);
+            // $company = Company::find($id);
             return \view('companies.show', \compact('company'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
@@ -119,10 +119,10 @@ class CompaniesController extends Controller
      * @param  \App\Model\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
         if (Auth::check()) {
-            $company = Company::find($id);
+            // $company = Company::find($id);
             return \view('companies.edit', \compact('company'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
@@ -136,10 +136,10 @@ class CompaniesController extends Controller
      * @param  \App\Model\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
         if (Auth::check()) {
-            return \redirect('companies');
+            return \redirect('companies', \compact('company'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
@@ -151,10 +151,10 @@ class CompaniesController extends Controller
      * @param  \App\Model\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
         if (Auth::check()) {
-            Company::destroy($id);
+            Company::destroy($company->id);
             return \redirect()->back()->with(['success' => 'data berhasil dihapus!!']);
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
