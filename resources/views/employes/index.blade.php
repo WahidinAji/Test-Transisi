@@ -7,7 +7,7 @@
                 <!-- AREA CHART -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Data Employes <span><a href="" class="badge badge-success ml-2"> Tambah data</a></span></h3>
+                        <h3 class="card-title">Data Employes <span><a href="{{ URL::route('companies.create') }}" class="badge badge-success ml-2"> Tambah data</a></span></h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i

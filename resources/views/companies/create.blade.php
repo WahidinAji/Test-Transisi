@@ -7,7 +7,7 @@
                 <!-- AREA CHART -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Data Companies <span><a href="" class="badge badge-success"> cek</a></span></h3>
+                        <h3 class="card-title">Data Companies <span><a href="{{ URL::route('companies.index') }}" class="badge badge-success ml-2"> back</a></span></h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -18,44 +18,69 @@
                     </div>
                     <div class="card-body">
                         <div class="chart">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">E-mail</th>
-                                        <th scope="col">Logo</th>
-                                        <th scope="col">Website</th>
-                                        <th scope="col">Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>@twitter</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <form action="{{ URL::route('companies.store') }}" enctype="multipart/form-data" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Company Name</label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="formGroupExampleInput" placeholder="Input names company" name="name" value="{{ old('name') }}">
+                                    @error('name')
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">Company E-mail</label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="formGroupExampleInput2" placeholder="Input email's company" name="email" value="{{ old('email') }}">
+                                    @error('email')
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">Company Website</label>
+                                    <input type="text" class="form-control @error('website') is-invalid @enderror" id="formGroupExampleInput2" placeholder="Input websites's company" name="website" value="{{ old('website') }}">
+                                    @error('website')
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                {{-- <div class="custom-file">
+                                    <input type="file" class="custom-file-input @error('logo') is-invalid @enderror" name="logo" value="{{ old('logo') }}">
+                                    <label class="custom-file-label" for="logo">Choose file</label>
+                                </div> --}}
+
+
+
+
+                                <div class="form-group col-sm-4">
+                                    <label for="formGroupExampleInput2">Company Logo</label>
+                                    <div class="file">
+                                        <input type="file" class="file-input" id="formGroupExampleInput2" name="logo" value="{{ old('logo') }}">
+                                    </div>
+                                    @error('logo')
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ $message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                              </form>
                         </div>
                     </div>
                     <!-- /.card-body -->

@@ -4,15 +4,17 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin | Dashboard </title>
+    <title>Admin Panel </title>
+
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('dist/img/avatar.png') }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
     <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <style>
@@ -109,7 +111,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item has-treeview  {{ Request::segment(1) === 'companies' ? 'menu-open' :null }}">
-                            <a href="{{ url('companies') }}" class="nav-link {{ Request::segment(1) === 'companies' ? 'active' :null }}">
+                            <a href="{{ URL::route('companies.index') }}" class="nav-link {{ Request::segment(1) === 'companies' ? 'active' :null }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Companies
@@ -153,15 +155,15 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- Bootstrap 4 -->
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="plugins/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <!-- AdminLTE App -->
-    <script src="dist/js/adminlte.min.js"></script>
+    <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+    <script src="{{ asset('dist/js/demo.js') }}"></script>
     <!-- page script -->
     <script>
         $(function () {

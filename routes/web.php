@@ -18,9 +18,10 @@ Route::get('/', function () {
 });
 Auth::routes(['register' => false]);
 
-Route::get('/companies', function () {
-    return view('companies.index');
-});
+// Route::get('/companies', function () {
+//     return view('companies.index');
+// });
+Route::resource('companies', 'CompaniesController');
 Route::get('/employes', function () {
     return view('employes.index');
 });
