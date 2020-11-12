@@ -22,9 +22,10 @@ Auth::routes(['register' => false]);
 //     return view('companies.index');
 // });
 Route::resource('companies', 'CompaniesController');
-Route::get('/employes', function () {
-    return view('employes.index');
-});
+Route::resource('employes', 'EmployesController');
+// Route::get('/employes', function () {
+//     return view('employes.index');
+// });
 // Route::get('/', function () {
 //     return redirect('login');
 // });

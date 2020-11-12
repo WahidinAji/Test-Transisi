@@ -119,7 +119,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview {{ Request::segment(1) === 'employes' ? 'menu-open' :null }}">
-                            <a href="{{ url('employes') }}" class="nav-link {{ Request::segment(1) === 'employes' ? 'active' :null }}">
+                            <a href="{{ URL::route('employes.index') }}" class="nav-link {{ Request::segment(1) === 'employes' ? 'active' :null }}">
                                 <i class="nav-icon fas fa-chart-pie"></i>
                                 <p>
                                     Employes

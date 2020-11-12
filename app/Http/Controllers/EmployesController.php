@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Company;
 use App\Model\Employe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,7 @@ class EmployesController extends Controller
     {
         if (Auth::check()) {
             $employe = Employe::all();
-            return \view('emloyes.index');
+            return \view('employes.index', \compact('employe'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
@@ -31,7 +32,8 @@ class EmployesController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            return \view('employe.create');
+            $company = Company::all();
+            return \view('employes.create', \compact('company'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
@@ -45,12 +47,21 @@ class EmployesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'companies_id'=>'required',
-            'name'=>'required',
-            'email'=>'required',
-        ]);
-        
+        if (Auth::check()) {
+            $this->validate($request, [
+                'companies_id' => 'required',
+                'name' => 'required',
+                'email' => 'required',
+            ]);
+            Employe::create([
+                'companies_id' => $request->companies_id,
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+            return \redirect('employes')->with(['success' => 'add data successfully']);
+        } else {
+            return \redirect('login')->with(['error' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -61,7 +72,11 @@ class EmployesController extends Controller
      */
     public function show(Employe $employe)
     {
-        //
+        if (Auth::check()) {
+            return \view('employes.show', \compact('employe'));
+        } else {
+            return \redirect('login')->with(['error' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -72,7 +87,11 @@ class EmployesController extends Controller
      */
     public function edit(Employe $employe)
     {
-        //
+        if (Auth::check()) {
+            return \view('employes.edit', \compact('employe'));
+        } else {
+            return \redirect('login')->with(['error' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -84,7 +103,22 @@ class EmployesController extends Controller
      */
     public function update(Request $request, Employe $employe)
     {
-        //
+        if (Auth::check()) {
+            $this->validate($request, [
+                'companies_id' => 'required',
+                'name' => 'required',
+                'email' => 'required',
+            ]);
+            $employe = Employe::find($employe->id);
+            $employe->update([
+                'companies_id' => $request->companies_id,
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+            return \redirect('employes')->with(['succes' => 'updated data successfully!!']);
+        } else {
+            return \redirect('login')->with(['error' => 'anda harus login!!']);
+        }
     }
 
     /**
@@ -95,6 +129,11 @@ class EmployesController extends Controller
      */
     public function destroy(Employe $employe)
     {
-        //
+        if (Auth::check()) {
+            Employe::destroy($employe->id);
+            return \redirect()->back()->with(['success' => 'data berhasil dihapus!!']);
+        } else {
+            return \redirect('login')->with(['error' => 'anda harus login!!']);
+        }
     }
 }

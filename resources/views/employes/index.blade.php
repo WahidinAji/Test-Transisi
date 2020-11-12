@@ -7,8 +7,7 @@
                 <!-- AREA CHART -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Data Employes <span><a href="{{ URL::route('companies.create') }}" class="badge badge-success ml-2"> Tambah data</a></span></h3>
-
+                        <h3 class="card-title">Data Companies <span><a href="{{ URL::route('employes.create') }}" class="badge badge-success ml-2"> tambah data</a></span></h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                     class="fas fa-minus"></i>
@@ -21,39 +20,39 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">E-mail</th>
-                                        <th scope="col">Logo</th>
-                                        <th scope="col">Website</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @forelse ($employe as $employes)
+                                    <tr>
+                                        <td></td>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $employes->name }}</td>
+                                        <td>
+                                            <a href="{{ URL::route('employes.edit',$employes->id) }}" class="badge badge-primary">Edit</a>
+                                            <a href="{{ URL::route('employes.show',$employes->id) }}" class="badge badge-primary">Show</a>
+                                            <form action="{{ URL::route('employes.destroy',$employes->id) }}"method="POST" class="badge" style="padding: 0%;">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="badge badge-danger" style="border-color: transparent;">
+                                                    Delete
+                                                    {{-- <span class="badge badge-danger" style="padding: 0%;">Delete</span> --}}
+                                                </button>
+                                            </form>
+                                            {{-- <a href="" class="badge badge-primary">Delete</a> --}}
+                                        </td>
+                                    </tr>
+                                    @empty
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>Mark</td>
                                         <td>Otto</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
-                                        <td>@mdo</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>@twitter</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
