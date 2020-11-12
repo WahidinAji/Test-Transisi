@@ -7,7 +7,7 @@
                 <!-- AREA CHART -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Data Employes <span><a href="{{ URL::route('employes.index') }}" class="badge badge-success ml-2"> back</a></span></h3>
+                        <h3 class="card-title">Data employes create <span><a href="{{ URL::route('employes.index') }}" class="badge badge-success ml-2"> back</a></span></h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
@@ -43,15 +43,6 @@
                                     </div>
                                     @enderror
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="formGroupExampleInput2">Which one</label>
-                                    <select class="custom-select @error('companeis_id') is-invalid @enderror" name="companeis_id">
-                                        <option disabled selected>Open this select menu</option>
-                                        @foreach ($company as $companies)
-                                        <option value="{{ $companies->id }}"> {{ $companies->name }} </option>
-                                        @endforeach
-                                    </select>
-                                </div> --}}
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="select" class=" form-control-label">Select a company</label>

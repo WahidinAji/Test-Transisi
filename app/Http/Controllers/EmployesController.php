@@ -6,6 +6,7 @@ use App\Model\Company;
 use App\Model\Employe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EmployesController extends Controller
 {
@@ -73,7 +74,12 @@ class EmployesController extends Controller
     public function show(Employe $employe)
     {
         if (Auth::check()) {
-            return \view('employes.show', \compact('employe'));
+            $company = DB::table('employes')
+                ->join('companies', 'companies.id', '=', 'employes.companies_id')
+                ->where('employes.companies_id', $employe->id)
+                ->get();
+            // \dd($company);
+            return \view('employes.show', \compact('employe', 'company'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
