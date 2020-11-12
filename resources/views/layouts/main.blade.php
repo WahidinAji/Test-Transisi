@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Admin Panel </title>
+    <title>Admin Panel</title>
 
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('dist/img/avatar.png') }}">
     <!-- Tell the browser to be responsive to screen width -->

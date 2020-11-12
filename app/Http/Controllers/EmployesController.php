@@ -122,7 +122,7 @@ class EmployesController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
             ]);
-            return \redirect('employes')->with(['succes' => 'updated data successfully!!']);
+            return \redirect('employes')->with(['success' => 'updated data successfully!!']);
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
