@@ -54,6 +54,7 @@
                                     </tr>
                                     @endforelse
                                 </tbody>
+                                {{ $employe->links() }}
                             </table>
                         </div>
                     </div>

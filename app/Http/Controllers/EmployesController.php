@@ -18,7 +18,7 @@ class EmployesController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $employe = Employe::all();
+            $employe = Employe::paginate(5);
             return \view('employes.index', \compact('employe'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);

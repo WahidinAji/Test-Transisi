@@ -19,7 +19,7 @@ class CompaniesController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $company = Company::all();
+            $company = Company::paginate(5);
             // \dd($company['logo']);
             return \view('companies.index', \compact('company'));
         } else {
