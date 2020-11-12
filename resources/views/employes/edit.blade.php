@@ -17,8 +17,8 @@
                     </div>
                     <div class="card-body">
                         <div class="chart">
-                            <form action="{{ URL::route('employes.store',$employe->id) }}" method="POST">
-                                @method('put')
+                            <form action="{{ URL::route('employes.update',$employe->id) }}" method="POST">
+                                @method('PUT')
                                 @csrf
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Employes Name</label>
@@ -44,7 +44,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                
+
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="select" class=" form-control-label">Select a Games</label>

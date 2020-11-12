@@ -88,7 +88,8 @@ class EmployesController extends Controller
     public function edit(Employe $employe)
     {
         if (Auth::check()) {
-            return \view('employes.edit', \compact('employe'));
+            $company = Company::all();
+            return \view('employes.edit', \compact('employe', 'company'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
