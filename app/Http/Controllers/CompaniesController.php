@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Model\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
-// use Intervention\Image\Image;
+use File;
 
 class CompaniesController extends Controller
 {
@@ -106,8 +107,13 @@ class CompaniesController extends Controller
     public function show(Company $company)
     {
         if (Auth::check()) {
-            // $company = Company::find($id);
-            return \view('companies.show', \compact('company'));
+            $employe = DB::table('Companies')
+                ->join('employes', 'companies.id', '=', 'employes.companies_id')
+                ->where('employes.companies_id', $company->id)
+                ->select('employes.name as name_employe', 'employes.email as email_employe')
+                ->paginate(5);
+            // \dd($employe);
+            return \view('companies.show', \compact('company', 'employe'));
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
@@ -139,7 +145,27 @@ class CompaniesController extends Controller
     public function update(Request $request, Company $company)
     {
         if (Auth::check()) {
-            return \redirect('companies', \compact('company'));
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required',
+                'website' => 'required',
+            ]);
+            $company = Company::find($company->id);
+            $fileName = $company->logo;
+            if ($request->hasFile('logo')) {
+                $image = $request->file('logo');
+                $imageName = $image->getClientOriginalName();
+                $fileName = \time() . '_' . $imageName;
+                Image::make($image)->resize(100, 100)->save(storage_path('app/company/' . $fileName));
+                File::delete(\storage_path('app/company/' . $company->logo));
+            }
+            $company->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'website' => $request->website,
+                'logo' => $fileName,
+            ]);
+            return \redirect('companies')->with(['success' => 'updated companies successfully!!']);
         } else {
             return \redirect('login')->with(['error' => 'anda harus login!!']);
         }
