@@ -5,7 +5,7 @@
 composer install
 cd <your-dir>
 cp .env.example .env
-php artisan generate:key
+php artisan key:generate
 ```
 
 ### Compiles and hot-reloads for development
